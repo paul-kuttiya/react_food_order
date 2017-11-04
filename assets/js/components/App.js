@@ -16,7 +16,8 @@ class App extends Component {
 
     this.updateCart = this.updateCart.bind(this);
     this.updateOrder = this.updateOrder.bind(this);
-    this.updateTotal = this.updateTotal.bind(this);   
+    this.updateTotal = this.updateTotal.bind(this);
+    this.deleteOrder = this.deleteOrder.bind(this);  
     this.toggleModal = this.toggleModal.bind(this);       
   }
 
@@ -47,15 +48,59 @@ class App extends Component {
     this.setState({modal: !this.state.modal});
   }
 
-  updateOrder(key) {
-    this.state.order[key] = this.state.order[key] || 0;
-    this.state.order[key]++;
+  deleteOrder(key) {
+    delete this.state.order[key];
+    delete this.state.cart[key];
+
+    this.setState({ 
+      cart: this.state.cart,
+      order: this.state.order 
+    });
   }
 
-  updateTotal(total) {
-    let current = this.state.total;
+  updateOrder(key, operator="plus") {
+    let order = this.state.order[key],
+        orderState = this.state.order;
 
-    current += total;
+    if (operator === "plus") {
+      order = order || 0;
+      order++;
+    }
+    
+    if (operator === "minus") {
+      order --;
+    }
+
+    if ((operator === "minus") && (order === 0)) {
+      this.deleteOrder(key);
+      return;
+    }
+
+    if (operator === "delete") {
+      this.deleteOrder(key);      
+      return;      
+    }
+    
+    orderState[key] = order
+    this.setState({order: orderState});
+  }
+
+  updateTotal(index, amount, operator) {
+    let current = this.state.total,
+        order = this.state.order[index];
+
+    if (operator === "plus") {
+      current += amount;
+    }
+
+    if ((operator === "minus") && (current > 0)) {
+      current -= amount;
+    }
+
+    if (operator === "delete") {
+      current -= (amount * order);
+    }
+
     this.setState({ total: current });
   }
 
@@ -68,11 +113,14 @@ class App extends Component {
     this.setState({ count: count });
   }
 
-  updateCart(key, item) {
-    this.state.cart[key] = item;
-    this.setState({cart: this.state.cart});
+  updateCart(index, item, operator="plus") {
+    const amount = item.price;
 
-    this.updateOrder(key);
+    this.state.cart[index] = item;
+    this.setState({ cart: this.state.cart });
+
+    this.updateTotal(index, amount, operator);
+    this.updateOrder(index, operator);
     this.updateCount();
   }
 
@@ -91,8 +139,8 @@ class App extends Component {
           total={this.state.total} 
           modal={this.state.modal} 
           updateCart={this.updateCart} 
-          updateTotal={this.updateTotal} 
           toggleModal={this.toggleModal} 
+          deleteOrder={this.deleteOrder}
         />
       </div>
     )

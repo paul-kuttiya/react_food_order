@@ -12,11 +12,9 @@ class ItemList extends Component {
   handleUpdate(e) {
     e.preventDefault();
     const item = this.props.item,
-          index = this.props.index,
-          amount = item.price;
+          index = this.props.index;
 
     this.props.updateCart(index, item);
-    this.props.updateTotal(amount);
   }
 
   render() {
@@ -52,7 +50,6 @@ ItemList.propTypes = {
 
   index: PropTypes.string.isRequired,
   updateCart: PropTypes.func.isRequired,
-  updateTotal: PropTypes.func.isRequired,
 }
 
 export default ItemList;

@@ -15,7 +15,6 @@ const Items = (props) => {
               index={key} 
               item={menuItems[key]} 
               updateCart={props.updateCart} 
-              updateTotal={props.updateTotal}                 
             />
           )
         })
@@ -26,7 +25,6 @@ const Items = (props) => {
 
 Items.propTypes = {
   updateCart: PropTypes.func.isRequired,
-  updateTotal: PropTypes.func.isRequired,
   display: PropTypes.string.isRequired
 }
 

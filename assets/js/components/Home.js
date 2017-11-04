@@ -36,7 +36,6 @@ class Home extends React.Component {
         />
         <Items
           updateCart={this.props.updateCart} 
-          updateTotal={this.props.updateTotal} 
           display={this.state.display} 
         />
         <Modal 
@@ -45,6 +44,7 @@ class Home extends React.Component {
           total={this.props.total} 
           modal={this.props.modal} 
           toggleModal={this.props.toggleModal} 
+          updateCart={this.props.updateCart} 
         />
       </div>
     )
@@ -53,7 +53,6 @@ class Home extends React.Component {
 
 Home.propTypes = {
   updateCart: PropTypes.func.isRequired,
-  updateTotal: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired, 
   cart: PropTypes.object.isRequired,
   order: PropTypes.object.isRequired,  

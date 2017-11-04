@@ -13,20 +13,25 @@ const Header = (props) => {
 }
 
 const Body = (props) => {
-  const cart = props.cart;
+  const cart = props.cart,
+        order = props.order;
   
   return (
     <div className="modal-body">
       <ul className="cart-lists">
         { 
           Object.keys(cart).map(key => {
-            return (
-              <ModalList 
-                key={key} 
-                item={cart[key]} 
-                order={props.order[key]} 
-              />
-            )
+            if (order[key]) {
+              return (
+                <ModalList 
+                  key={key} 
+                  index={key} 
+                  item={cart[key]} 
+                  order={props.order[key]} 
+                  updateCart={props.updateCart} 
+                />
+              )
+            }
           })
         }
       </ul>
@@ -60,7 +65,11 @@ const Modal = (props) => {
     <div className="modal" id="cart" style={{display: display}}>
       <div className="modal-content">
         <Header toggleModal={props.toggleModal} />
-        <Body cart={props.cart} order={props.order} />
+        <Body 
+          cart={props.cart} 
+          order={props.order} 
+          updateCart={props.updateCart} 
+        />
         <Footer total={props.total} />
       </div>
     </div>
@@ -69,7 +78,8 @@ const Modal = (props) => {
 
 Body.propTypes = {
   cart: PropTypes.object.isRequired,
-  order: PropTypes.object.isRequired,  
+  order: PropTypes.object.isRequired, 
+  updateCart: PropTypes.func.isRequired,
 }
 
 Modal.propTypes = {
@@ -78,6 +88,7 @@ Modal.propTypes = {
   total: PropTypes.number.isRequired,
   modal: PropTypes.bool.isRequired, 
   toggleModal: PropTypes.func.isRequired, 
+  updateCart: PropTypes.func.isRequired,
 }
 
 Header.propTypes = {
