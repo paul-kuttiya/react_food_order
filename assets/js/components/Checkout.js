@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Main from './partials/Main';
+import PropTypes from 'prop-types';
+import Main from './Main';
 import Form from './Checkout/Form';
 import Summary from './Checkout/Summary';
 
-const Body = (props) => {
+const CheckoutBody = (props) => {
   return (
     <div className="order-container">    
-      <Form />
+      <Form customer={props.customer} updateCustomer={props.updateCustomer} />
       <Summary {...props} />
     </div>
   )
@@ -16,10 +17,15 @@ class Checkout extends Component {
   render() {
     return (
       <Main>
-        <Body {...this.props} />
+        <CheckoutBody {...this.props} />
       </Main>
     )
   }
+}
+
+Form.propTypes = {
+  customer: PropTypes.object.isRequired,
+  updateCustomer: PropTypes.func.isRequired,
 }
 
 export default Checkout;

@@ -9,50 +9,60 @@ input
   justify-content: space-between
 
   form
+    display: flex
+    flex-direction: column
+    justify-content: space-between
     flex: 3
     background-color: white
     margin-right: 1rem
+    i
+      margin-right: 1rem
     h2
       font-weight: normal
       margin: 1rem
       padding: 0 0 .5rem 0
       border-bottom: 3px solid $black
-    fieldset
-      padding: 0
-      margin: 0
+    .input-wrapper
       display: flex
-      border: none
-      .input-wrapper
+      flex-direction: column
+      justify-content: space-between
+      margin-bottom: 1rem
+      .input-group
         display: flex
-        justify-content: space-between
-        margin-bottom: 1rem
-        .radio-group, .input-group
-          font-weight: 300
-          margin: .5rem 1rem
-        .input-group
-          display: flex
-          flex-direction: column
-          flex: 1
-          label
-            font-weight: bolder
-          input[type="text"]
-            margin-top: .25rem
-            padding: 1rem
-            border: 2px solid #e0e0e0
-            box-shadow: inset 1px 1px 2px 0 rgba(40,43,46,0.06)
-            border-radius: 0
-      button
-        border: none
-        background-color: orange
-        color: white
-        font-size: 1.5rem
-        font-weight: 500
-        margin: 0 auto
-        width: 100%
+        flex-direction: column
+        flex: 1
+      .radio-group, .input-group
+        margin: .5rem 1rem
+        font-weight: bolder
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"]
+        margin-top: .25rem
         padding: 1rem
-        cursor: pointer
-        &:hover
-          background-color: $black
+        border: 2px solid #e0e0e0
+        box-shadow: inset 1px 1px 2px 0 rgba(40,43,46,0.06)
+        border-radius: 0
+    button
+      margin-top: auto
+      border: none
+      background-color: orange
+      color: white
+      font-size: 1.5rem
+      font-weight: 500
+      width: 100%
+      padding: 1rem
+      cursor: pointer
+      &:hover
+        background-color: $black
+
+.input-info
+  display: flex
+  flex-wrap: wrap
+
+.payments-info
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
 
 #order-summary, form
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)

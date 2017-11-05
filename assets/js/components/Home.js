@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Main from './partials/Main';
+import Main from './Main';
 import Banner from './Home/Banner';
 import DisplayStyle from './Home/DisplayStyle';
 import Items from './Home/Items';
@@ -62,6 +62,11 @@ class Home extends React.Component {
       </Main>
     )
   }
+}
+
+HomeBody.propTypes = {
+  display: PropTypes.string.isRequired,
+  updateStyle: PropTypes.func.isRequired
 }
 
 export default Home;

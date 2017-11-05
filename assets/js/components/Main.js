@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Nav from './Nav';
+import Nav from './partials/Nav';
 
 class Main extends Component {
   constructor() {
@@ -11,11 +11,22 @@ class Main extends Component {
       count: 0,
       order: {},
       cart: {},
+      customer: {
+        //react will alert if no initial state;
+        first: '',
+        last: '',
+        address: '',
+        city: '',
+        phone: '',
+        email: '',
+        payment: "cash"
+      }
     }
 
     this.updateCart = this.updateCart.bind(this);
     this.updateOrder = this.updateOrder.bind(this);
     this.updateTotal = this.updateTotal.bind(this);
+    this.updateCustomer = this.updateCustomer.bind(this);    
     this.deleteOrder = this.deleteOrder.bind(this);  
     this.toggleModal = this.toggleModal.bind(this);       
   }
@@ -55,6 +66,13 @@ class Main extends Component {
       cart: this.state.cart,
       order: this.state.order 
     });
+  }
+
+  updateCustomer(InfoKey, value) {
+    const customer = this.state.customer;
+
+    customer[InfoKey] = value;
+    this.setState({ customer: customer });
   }
 
   updateOrder(key, operator="plus") {
@@ -138,7 +156,9 @@ class Main extends Component {
               cart: this.state.cart,
               order: this.state.order,
               total: this.state.total,
+              customer: this.state.customer,
               modal: this.state.modal,
+              updateCustomer: this.updateCustomer,
               updateCart: this.updateCart,
               toggleModal: this.toggleModal,
             }
