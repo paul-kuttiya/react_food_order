@@ -12,10 +12,26 @@ const Header = (props) => {
   )
 }
 
+const Empty = (props) => {
+  return (
+    <div className={props.bodyClass}>
+      <ul className="cart-lists">
+        <div className="hungry">
+          <h2>Your cart is hungry!</h2>
+        </div>
+      </ul>
+    </div>
+  )
+}
+
 const Body = (props) => {
   const cart = props.cart,
         order = props.order;
   
+  if (Object.keys(order).length === 0) {
+    return <Empty />
+  }
+
   return (
     <div className={props.bodyClass}>
       <ul className="cart-lists">
