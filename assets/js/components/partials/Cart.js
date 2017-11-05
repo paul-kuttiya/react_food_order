@@ -1,13 +1,13 @@
 import React from 'react';
-import ModalList from './ModalList';
+import { Link } from 'react-router-dom';
+import CartList from './CartList';
 import PropTypes from 'prop-types';
-import { price } from '../../lib/helper';
+import { price } from '../../../lib/helper';
 
 const Header = (props) => {
   return (
-    <div className="modal-header">
-      <span onClick={props.toggleModal} className="close">x</span>
-      <h2>Your Cart</h2>
+    <div className={props.headClass}>
+      { props.children }
     </div>
   )
 }
@@ -17,13 +17,13 @@ const Body = (props) => {
         order = props.order;
   
   return (
-    <div className="modal-body">
+    <div className={props.bodyClass}>
       <ul className="cart-lists">
         { 
           Object.keys(cart).map(key => {
             if (order[key]) {
               return (
-                <ModalList 
+                <CartList 
                   key={key} 
                   index={key} 
                   item={cart[key]} 
@@ -48,41 +48,58 @@ const Footer = (props) => {
           <span>${price(props.total)}</span>
         </h2>
       </div>
-      <button className="checkout">
-        <h1>
-          <a href="#checkout">checkout</a>
-        </h1>
-      </button>
+      { props.children }
     </div>    
   )
 }
 
-const Modal = (props) => {
+const Cart = (props) => {
   const modal = props.modal,
         display = modal ? "block" : "none";
 
   return (
     <div className="modal" id="cart" style={{display: display}}>
       <div className="modal-content">
-        <Header toggleModal={props.toggleModal} />
+        <Header headClass="modal-header" toggleModal={props.toggleModal}>
+          <span onClick={props.toggleModal} className="close">x</span>
+          <h2>Your Cart</h2>
+        </Header>
         <Body 
+          bodyClass="modal-body" 
           cart={props.cart} 
           order={props.order} 
           updateCart={props.updateCart} 
         />
-        <Footer total={props.total} />
+        <Footer total={props.total}>
+          <button className="checkout">
+            <h1>
+              <Link to="/checkout">
+                checkout
+              </Link>
+            </h1>
+          </button>
+        </Footer>
       </div>
     </div>
   )
+}
+
+Header.propTypes = {
+  headClass: PropTypes.string.isRequired,
 }
 
 Body.propTypes = {
   cart: PropTypes.object.isRequired,
   order: PropTypes.object.isRequired, 
   updateCart: PropTypes.func.isRequired,
+  bodyClass: PropTypes.string.isRequired,
 }
 
-Modal.propTypes = {
+Footer.propTypes = {
+  total: PropTypes.number.isRequired, 
+}
+
+Cart.propTypes = {
   cart: PropTypes.object.isRequired,
   order: PropTypes.object.isRequired,  
   total: PropTypes.number.isRequired,
@@ -91,12 +108,7 @@ Modal.propTypes = {
   updateCart: PropTypes.func.isRequired,
 }
 
-Header.propTypes = {
-  toggleModal: PropTypes.func.isRequired, 
-}
-
-Footer.propTypes = {
-  total: PropTypes.number.isRequired, 
-}
-
-export default Modal;
+export { Header };
+export { Body };
+export { Footer };
+export default Cart;

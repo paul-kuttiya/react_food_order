@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import menuItems from '../../lib/menuItems';
+import menuItems from '../../../lib/menuItems';
 import ItemList from './ItemList';
 import PropTypes from 'prop-types';
 

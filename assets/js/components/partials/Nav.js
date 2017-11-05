@@ -1,6 +1,7 @@
 import React from 'react';
 import NavIcons from './NavIcons';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Nav = (props) => {
   return (
@@ -8,7 +9,7 @@ const Nav = (props) => {
       <nav>
         <div id="nav-logo">
           <h1>
-            <a>Food Order</a>
+            <Link to="/">Food Order</Link>
           </h1>
         </div>
         <NavIcons 

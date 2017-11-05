@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { price } from '../../lib/helper';
+import { price } from '../../../lib/helper';
 import PropTypes from 'prop-types';
 
 class ItemList extends Component {

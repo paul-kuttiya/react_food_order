@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class ModalList extends Component {
+class CartList extends Component {
   constructor() {
     super();
 
@@ -56,10 +56,10 @@ class ModalList extends Component {
   }
 }
 
-ModalList.propTypes = {
+CartList.propTypes = {
   item: PropTypes.object.isRequired,
   order: PropTypes.number.isRequired, 
   updateCart: PropTypes.func.isRequired, 
 }
 
-export default ModalList;
+export default CartList;

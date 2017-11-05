@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { price } from '../../lib/helper';
+import { price } from '../../../lib/helper';
 
 class NavIcons extends React.Component {
   constructor() {

@@ -1,9 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Banner from './Banner';
-import DisplayStyle from './DisplayStyle';
-import Items from './Items';
-import Modal from './Modal';
+import Main from './partials/Main';
+import Banner from './Home/Banner';
+import DisplayStyle from './Home/DisplayStyle';
+import Items from './Home/Items';
+import Cart from './partials/Cart';
+
+const HomeBody = (props) => {
+  return (
+    <div>
+      <Banner />
+      <DisplayStyle 
+        updateStyle={props.updateStyle}
+      />
+      <Items
+        updateCart={props.updateCart} 
+        display={props.display} 
+      />
+      <Cart 
+        cart={props.cart} 
+        order={props.order} 
+        total={props.total} 
+        modal={props.modal} 
+        toggleModal={props.toggleModal} 
+        updateCart={props.updateCart} 
+      />
+    </div>
+  )
+}
 
 class Home extends React.Component {
   constructor() {
@@ -21,43 +45,23 @@ class Home extends React.Component {
     e.stopPropagation();
 
     const display = e.target.closest("a")
-    .getAttribute("href")
-    .replace(/#/, '');
+                            .getAttribute("href")
+                            .replace(/#/, '');
     
     this.setState({ display: display });
   }
 
   render() {
     return(
-      <div>
-        <Banner />
-        <DisplayStyle 
-          updateStyle={this.updateStyle}
-        />
-        <Items
-          updateCart={this.props.updateCart} 
+      <Main>
+        <HomeBody 
           display={this.state.display} 
+          updateStyle={this.updateStyle} 
+          {...this.props}
         />
-        <Modal 
-          cart={this.props.cart} 
-          order={this.props.order} 
-          total={this.props.total} 
-          modal={this.props.modal} 
-          toggleModal={this.props.toggleModal} 
-          updateCart={this.props.updateCart} 
-        />
-      </div>
+      </Main>
     )
   }
-}
-
-Home.propTypes = {
-  updateCart: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired, 
-  cart: PropTypes.object.isRequired,
-  order: PropTypes.object.isRequired,  
-  total: PropTypes.number.isRequired,
-  modal: PropTypes.bool.isRequired, 
 }
 
 export default Home;

@@ -58,54 +58,53 @@
 					text-decoration: none
 					cursor: pointer
 
-		.modal-body
-			.cart-lists
-				overflow-y: auto
-				height: 50vh
-				li
-					padding: 1rem 0 1rem 1rem
-					border-bottom: 1px solid $light-grey
-					.list-container
-						display: flex
-						.quality, .item-price
-							margin-left: auto
-						.item-price
-							display: inline-block
-							width: 50px
-							text-align: right
-						.edit
-							margin-left: auto
-							padding-right: 1.5rem
-							a
-								display: inline-block
-								font-weight: bolder
-							.plus, .minus
-								margin-left: .25rem
-							.delete
-								margin-left: 1rem
-
-		.modal-footer
+.cart-lists
+	overflow-y: auto
+	height: 50vh
+	li
+		padding: 1rem 0 1rem 1rem
+		border-bottom: 1px solid $light-grey
+		.list-container
 			display: flex
-			flex-direction: column
-			margin-top: auto
-			.total
-				border-top: 1px solid $black
-				width: 100%
+			.quality, .item-price
+				margin-left: auto
+			.item-price
+				display: inline-block
+				width: 50px
 				text-align: right
-				h2
-					font-weight: normal
-					padding: 0 2rem
-
-			.checkout
-				padding: 1em
-				border: none
-				text-align: center
-				color: white
-				background-color: $button
-				cursor: pointer
+			.edit
+				margin-left: auto
+				padding-right: 1.5rem
 				a
-					color: white
-					text-transform: uppercase
+					display: inline-block
+					font-weight: bolder
+				.plus, .minus
+					margin-left: .25rem
+				.delete
+					margin-left: 1rem
+
+.modal-footer
+	display: flex
+	flex-direction: column
+	margin-top: auto
+	.total
+		border-top: 1px solid $black
+		width: 100%
+		text-align: right
+		h2
+			font-weight: normal
+			padding: 0 2rem
+
+	.checkout
+		padding: 1em
+		border: none
+		text-align: center
+		color: white
+		background-color: $button
+		cursor: pointer
+		a
+			color: white
+			text-transform: uppercase
 
 @media only screen and (max-width: 417px)
 	.modal
