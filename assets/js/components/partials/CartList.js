@@ -22,13 +22,18 @@ class CartList extends Component {
     const item = this.props.item,
           order = this.props.order;
 
+    const displayImage = this.props.displayImage ? "initial" : "none",
+          displayButton = this.props.displayButton ? "initial" : "none";
+
     return (
       <li>
         <div className="list-container">
+          <img src={item.image} style={{display: displayImage}} />
           <span>{item.name}</span>
           <div className="edit">
             <span className="quality">{order}</span>
             <a 
+              style={{display: displayButton}} 
               className="minus" 
               href="#"
               onClick={(e) => this.handleUpdate("minus", e)}
@@ -36,6 +41,7 @@ class CartList extends Component {
               <i className="fa fa-minus-circle"></i>
             </a>
             <a 
+              style={{display: displayButton}} 
               className="plus" 
               href="#"
               onClick={(e) => this.handleUpdate("plus", e)}
@@ -44,6 +50,7 @@ class CartList extends Component {
             </a>
             <span className="item-price">${price(item.price)}</span>
             <a 
+              style={{display: displayButton}} 
               className="delete" 
               href="#" 
               onClick={(e) => this.handleUpdate("delete", e)}
@@ -52,12 +59,19 @@ class CartList extends Component {
             </a>
           </div>
         </div>
-      </li>      
+      </li>
     )
   }
 }
 
+CartList.defaultProps = {
+  displayImage: false,
+  displayButton: true,
+}
+
 CartList.propTypes = {
+  displayImage: PropTypes.bool.isRequired, 
+  displayButton: PropTypes.bool.isRequired,   
   item: PropTypes.object.isRequired,
   order: PropTypes.number.isRequired, 
   updateCart: PropTypes.func.isRequired, 

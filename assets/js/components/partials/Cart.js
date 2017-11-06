@@ -6,8 +6,10 @@ import { price } from '../../../lib/helper';
 
 const Header = (props) => {
   return (
-    <div className={props.headClass}>
-      { props.children }
+    <div>
+      <div className={props.headClass}>
+        { props.children }
+      </div>
     </div>
   )
 }
@@ -40,6 +42,8 @@ const Body = (props) => {
             if (order[key]) {
               return (
                 <CartList 
+                  displayImage={props.displayImage}
+                  displayButton={props.displayButton}
                   key={key} 
                   index={key} 
                   item={cart[key]} 
@@ -69,39 +73,45 @@ const Footer = (props) => {
   )
 }
 
-const Cart = (props) => {
-  const modal = props.modal,
-        display = modal ? "block" : "none";
-
+const Modal = (props) => {
   return (
-    <div className="modal" id="cart" style={{display: display}}>
+    <div className="modal" id={props.htmlId} style={{display: props.display}}>
       <div className="modal-content">
-        <Header headClass="modal-header" toggleModal={props.toggleModal}>
-          <span onClick={props.toggleModal} className="close">x</span>
-          <h2>Your Cart</h2>
-        </Header>
-        <Body 
-          bodyClass="modal-body" 
-          cart={props.cart} 
-          order={props.order} 
-          updateCart={props.updateCart} 
-        />
-        <Footer total={props.total}>
-          <button className="checkout">
-            <h1>
-              <Link to="/checkout">
-                checkout
-              </Link>
-            </h1>
-          </button>
-        </Footer>
+        {props.children}
       </div>
     </div>
   )
 }
 
-Header.propTypes = {
-  headClass: PropTypes.string.isRequired,
+const Cart = (props) => {
+  const modal = props.modal,
+        display = modal ? "block" : "none";
+
+  return (
+    <Modal htmlId="cart" display={display}>
+      <Header headClass="modal-header" toggleModal={props.toggleModal}>
+        <span onClick={props.toggleModal} className="close">x</span>
+        <h2>Your Cart</h2>
+      </Header>
+      <Body 
+        displayImage={props.displayImage}
+        displayButton={props.displayButton}        
+        bodyClass="modal-body" 
+        cart={props.cart} 
+        order={props.order} 
+        updateCart={props.updateCart} 
+      />
+      <Footer total={props.total}>
+        <button className="checkout">
+          <h1>
+            <Link to="/checkout">
+              checkout
+            </Link>
+          </h1>
+        </button>
+      </Footer>
+    </Modal>
+  )
 }
 
 Body.propTypes = {
@@ -124,6 +134,7 @@ Cart.propTypes = {
   updateCart: PropTypes.func.isRequired,
 }
 
+export { Modal };
 export { Header };
 export { Body };
 export { Footer };

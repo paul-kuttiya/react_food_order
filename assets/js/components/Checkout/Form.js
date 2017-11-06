@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const InputText = (props) => {
   const value = props.customer[props.for];
@@ -73,7 +74,18 @@ class Form extends Component {
   constructor() {
     super();
 
+    this.state = {
+      submit: false
+    }
+
     this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);    
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    this.setState({ modal: true })
   }
 
   handleInput(e) {
@@ -84,8 +96,14 @@ class Form extends Component {
   }
 
   render() {
+    const hasOrder = !!Object.keys(this.props.order).length,
+          allInput = Object.values(this.props.customer)
+                           .every((e, idx, arr) => e !== "");
+
+    const disabled = !(hasOrder && allInput);
+
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <Info 
           customer={this.props.customer} 
           updateCustomer={this.props.updateCustomer} 
@@ -96,7 +114,14 @@ class Form extends Component {
           updateCustomer={this.props.updateCustomer} 
           handleInput={this.handleInput} 
         />
-        <button type="submit">Order now!</button>
+        <Link to="/success">
+          <button 
+            type="submit" 
+            disabled={disabled}
+          >
+            Order now!
+          </button>
+        </Link>
       </form>
     )
   }

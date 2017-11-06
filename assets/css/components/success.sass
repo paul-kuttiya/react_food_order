@@ -1,0 +1,56 @@
+.success
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  padding: 1rem 0
+  .address
+    border: 1px solid $black
+    width: 30%
+    padding: 1rem
+    margin-right: .5rem
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
+    h3
+      margin-bottom: 0
+    .address-list
+      padding: .5rem 0
+      span
+        margin-right: .25rem
+        text-transform: capitalize
+        &:first-of-type
+          color: $green
+          font-weight: 600
+      &:nth-last-child(2)
+        span:last-of-type
+          text-transform: none
+
+.success-wrapper
+  button.back
+    width: 100%
+    margin: .5rem 0 1rem 0
+    border: none
+    background-color: $button
+    color: white
+    font-size: 1.5rem
+    font-weight: 500
+    padding: 1rem
+    cursor: pointer
+    &:hover
+      background-color: $grey
+
+@media screen and (max-width: 770px)
+  .success
+    padding: 0
+    #order-summary
+      box-shadow: none
+      border-bottom: 1px solid $black
+      margin: 0
+      .cart-lists
+        height: auto
+    .address
+      box-shadow: none      
+      border: none
+      width: 100%
+  .success-wrapper
+    button.back
+      margin: 0
+    

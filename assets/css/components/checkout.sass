@@ -54,11 +54,16 @@ input
       cursor: pointer
       &:hover
         background-color: $black
+      &:disabled,
+        background-color: $grey
+        color: $black
+      &:disabled:hover
+        cursor: not-allowed
 
 .input-info
   display: flex
   flex-wrap: wrap
-
+  
 .payments-info
   display: flex
   flex-wrap: wrap
@@ -76,15 +81,17 @@ input
   height: 100%
 
   .header
-    padding: 0 1rem
+    padding: .5rem 0
     background-color: black
     color: white
+    h2
+      padding: 0 1.5rem
   .body
     .cart-lists
       overflow-y: auto
       height: 50vh
       li
-        padding: 1rem 0 1rem 1rem
+        padding: 1.5rem
         border-bottom: 1px solid $light-grey
         .list-container
           display: flex
@@ -102,7 +109,7 @@ input
       text-align: right
       h2
         font-weight: normal
-        padding: 0 2rem
+        padding: 0 1.5rem
 
     .checkout
       border: none
@@ -114,7 +121,7 @@ input
         color: white
         text-transform: uppercase
 
-@media screen and (max-width: 417px)
+@media screen and (max-width: 770px)
   .order-container
     flex-direction: column
     padding: 0 .5rem

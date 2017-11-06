@@ -15,6 +15,8 @@ $fa-font-path: "../fonts/font-awesome"
 @import './components/modal'
 @import './components/checkout'
 @import './components/radio'
+@import './components/success.sass'
+
 
 //for fixed nav
 .content-wrapper
@@ -99,6 +101,7 @@ a
 			width: 150px
 			height: 100px
 		.info
+			max-width: 65%
 			margin-left: 1em
 			h4
 				margin: 0 0 .25em 0
@@ -169,8 +172,6 @@ a
 			.item
 				flex-wrap: wrap
 				padding: 1em .5em
-				.info
-					width: 70%
 				img
 					width: 100px
 					height: 80px
@@ -184,3 +185,9 @@ a
 					width: 100px
 				button
 					margin-left: auto
+
+@media screen and (max-width: 325px)
+	.list
+		.item
+			.info
+				max-width: 60%

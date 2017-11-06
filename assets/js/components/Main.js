@@ -4,7 +4,7 @@ import Nav from './partials/Nav';
 class Main extends Component {
   constructor() {
     super();
-
+    
     this.state = {
       modal: false,
       total: 0,
@@ -23,12 +23,15 @@ class Main extends Component {
       }
     }
 
+    this.initialState = this.state;
+
     this.updateCart = this.updateCart.bind(this);
     this.updateOrder = this.updateOrder.bind(this);
     this.updateTotal = this.updateTotal.bind(this);
     this.updateCustomer = this.updateCustomer.bind(this);    
     this.deleteOrder = this.deleteOrder.bind(this);  
-    this.toggleModal = this.toggleModal.bind(this);       
+    this.toggleModal = this.toggleModal.bind(this);
+    this.resetState = this.resetState.bind(this);     
   }
 
   getStorage(string) {
@@ -141,10 +144,16 @@ class Main extends Component {
     this.updateCount();
   }
 
+  resetState() {
+    this.setState(this.initialState);
+    return true;
+  }
+
   render() {
     return (
       <div>
         <Nav 
+          disabledLink={this.props.disabledLink} 
           toggleModal={this.toggleModal} 
           count={this.state.count} 
           cart={this.state.cart} 
@@ -162,6 +171,7 @@ class Main extends Component {
                 updateCustomer: this.updateCustomer,
                 updateCart: this.updateCart,
                 toggleModal: this.toggleModal,
+                resetState: this.resetState,
               }
             )
           }
