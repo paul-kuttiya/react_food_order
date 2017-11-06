@@ -150,20 +150,22 @@ class Main extends Component {
           cart={this.state.cart} 
           total={this.state.total} 
         />
-        {
-          React.cloneElement(this.props.children, 
-            { 
-              cart: this.state.cart,
-              order: this.state.order,
-              total: this.state.total,
-              customer: this.state.customer,
-              modal: this.state.modal,
-              updateCustomer: this.updateCustomer,
-              updateCart: this.updateCart,
-              toggleModal: this.toggleModal,
-            }
-          )
-        }
+        <div className="content-wrapper">
+          {
+            React.cloneElement(this.props.children, 
+              { 
+                cart: this.state.cart,
+                order: this.state.order,
+                total: this.state.total,
+                customer: this.state.customer,
+                modal: this.state.modal,
+                updateCustomer: this.updateCustomer,
+                updateCart: this.updateCart,
+                toggleModal: this.toggleModal,
+              }
+            )
+          }
+        </div>
       </div>
     )
   }

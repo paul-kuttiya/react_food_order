@@ -16,6 +16,11 @@ $fa-font-path: "../fonts/font-awesome"
 @import './components/checkout'
 @import './components/radio'
 
+//for fixed nav
+.content-wrapper
+	margin-top: 6rem
+
+
 .show
 	display: block
 
@@ -36,16 +41,21 @@ a
 	text-decoration: none
 
 .banner
+	background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3) ), 
+	url("http://res.cloudinary.com/duyzz578q/image/upload/v1509936246/react_food_order/banner.png")
+  background-repeat: no-repeat
 	display: flex
 	align-items: center
 	flex-direction: column
-	height: 175px
+	height: 400px
 	background-color: $light-grey
 	box-sizing: border-box
 	justify-content: center
+	color: white
 	h1
 		margin-bottom: 0
-		font-weight: normal
+		font-weight: bold
+		font-size: 3em
 
 .display-style
 	display: flex
@@ -115,6 +125,7 @@ a
 			max-width: 100%
 			height: auto
 		.info
+			height: 80px
 			h4
 				margin-bottom: 5px
 			span
@@ -134,11 +145,6 @@ a
 		width: 100%
 		h1
 			font-size: 1.25em
-		nav
-			margin: 0 1em
-			.nav-icons
-				img, span
-					font-size: 1em
 		
 		.display-style
 			padding-right: 1em
@@ -154,6 +160,8 @@ a
 			padding: 0 1em
 			.item
 				width: 45%
+				.info
+					width: 100%
 
 		.list
 			border-left: none
@@ -161,6 +169,8 @@ a
 			.item
 				flex-wrap: wrap
 				padding: 1em .5em
+				.info
+					width: 70%
 				img
 					width: 100px
 					height: 80px
@@ -174,8 +184,3 @@ a
 					width: 100px
 				button
 					margin-left: auto
-
-@media screen and (max-width: 325px)
-	#menu-items
-		.info
-			width: 60%

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { price } from '../../../lib/helper';
 
 class CartList extends Component {
   constructor() {
@@ -41,7 +42,7 @@ class CartList extends Component {
             >
               <i className="fa fa-plus-circle"></i>
             </a>
-            <span className="item-price">${item.price}</span>
+            <span className="item-price">${price(item.price)}</span>
             <a 
               className="delete" 
               href="#" 
