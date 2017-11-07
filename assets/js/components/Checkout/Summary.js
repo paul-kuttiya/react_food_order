@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Header } from '../partials/Cart';
-import { Body } from '../partials/Cart';
-import { Footer } from '../partials/Cart';
+import Modal, { Header, Body, Footer } from '../partials/Modal';
 
 const Summary = (props) => {
   return (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Summary from './Checkout/Summary';
 import Main from './Main';
-import { Header } from './partials/Cart';
+import Modal, { Header, Body, Footer } from './partials/Modal';
 
 const Address = (props) => {
   return (

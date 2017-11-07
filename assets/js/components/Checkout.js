@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import Main from './Main';
 import Form from './Checkout/Form';
 import Summary from './Checkout/Summary';
-import { Modal } from './partials/Cart';
-import { Header } from './partials/Cart';
-import { Body } from './partials/Cart';
-import { Footer } from './partials/Cart';
+import Modal, { Header, Body, Footer } from './partials/Modal';
 
 const CheckoutBody = (props) => {
   return (
