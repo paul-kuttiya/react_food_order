@@ -1,7 +1,7 @@
 export default {  
   item_1 : {
     name : 'Beef Burger',
-    image : 'http://res.cloudinary.com/duyzz578q/image/upload/v1509726171/burger_gctzpu.jpg',
+    image : 'http://res.cloudinary.com/duyzz578q/image/upload/v1509726171/react_food_order/beef_burger.jpg',
     desc : 'Beef, cheese, potato, onion, fries',
     price : 6.75,
     available : true
